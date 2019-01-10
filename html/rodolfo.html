@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<h1>Abrir la consola para ver la magia...</h1>
+
+	<script type="text/javascript">
+		
+		/*
+			arrow function, un parametro, return sin llaves o con ()
+			parametro = 'algo'
+			color || 'red'
+			concatenacion de strings
+			destructuracion de objetos y arreglos
+			destructuracion obj en funciones ({algo, mas})
+			spread operator ...obj
+			closures ()()
+			cuando objeto se llama igual que variable { var: var }
+			if ternario
+		*/
+
+//=========================================================================
+//----> Arrow Function
+
+		/*
+		const iterador = arr => {
+			return arr.map((elemt, index) => {
+				return elemt * 2;
+			});
+		}
+		*/
+		let arreglo = [1, 2, 3, 4, 5];
+		const iterador = arr => arr.map( (elemt, index) => (elemt * 2) );
+		console.log(iterador(arreglo));
+
+//=========================================================================
+//----> Defaults en parametros
+
+		/*
+		const sumar = (num1, num2) => {
+			if (!num1) {
+				num1 = 0
+			}
+			if (!num2) {
+				num2 = 0
+			}
+			return num1 + num2;
+		}
+		*/
+		const sumar = (num1 = 0, num2 = 0) => (num1 + num2);
+		console.log(sumar(5));
+
+//=========================================================================
+//----> Pipes
+
+		/*
+		const sumar2 = (num1, num2) => {
+			if (!num1) {
+				num1 = 0
+			}
+			if (!num2) {
+				num2 = 0
+			}
+			return num1 + num2;
+		}
+		*/
+		const sumar2 = (num1, num2) => {
+			num1 = num1 || 0;
+			num2 = num2 || 0;
+			return num1 + num2;
+		}
+		console.log(sumar2());
+
+//=========================================================================
+//----> Interpolation
+
+		let nombre_int = 'Kathia';
+		// let cadena = 'Hola como estas ' + nombre_int + '?';
+		let cadena = `Hola como estas ${nombre_int}?`;
+		console.log(cadena);
+
+//=========================================================================
+//----> Object Destructuring
+
+		let persona = {
+			nombre: 'Rodo',
+			edad: 40,
+			altura: 100,
+			peso: 25
+		};
+		/*
+		let nombre = persona.nombre;
+		let p_edad = persona.edad;
+		let altura = persona.altura;
+		let p_peso = persona.peso;
+		*/
+		let { nombre, edad: p_edad, altura, peso: p_peso } = persona;
+		console.log(nombre, p_edad, altura, p_peso);
+
+//=========================================================================
+//----> Array Destructuring
+
+		const numeros = [1, 2, 3, 4, 5];
+		/*
+		let i1 = numeros[0];
+		let i2 = numeros[1];
+		let i3 = numeros[2];
+		let i5 = numeros[4];
+		*/
+		let [i1, i2, i3, , i5] = numeros;
+		console.log(i1, i2, i3, i5);
+
+//=========================================================================
+//----> Object Destructuring en parametros
+		/*
+		const desplegarPersona = (persona) => {
+			let nombre = persona.nombre;
+			let peso = persona.peso;
+			return nombre + ' pesa ' + peso + ' kilos';
+		};
+		*/
+//---->  Persona esta definida en la linea 84
+		const desplegarPersona = ({ nombre, peso }) => `${nombre} pesa ${peso} kilos`;
+		console.log(desplegarPersona(persona));
+
+//=========================================================================
+//----> Spread Operator
+
+		/*
+		let personaCompleta = {
+			nombre: persona.nombre,
+			edad: persona.edad,
+			altura: persona.altura,
+			peso: persona.peso,
+			genero: 'hombre',
+			ojos: 'verde',
+			genero: 'hombre',
+			ojos: 'verde',
+			cabello: 'rubio',
+			piel: 'aperlado'
+		};
+		*/
+		let masInfo = { genero: 'hombre', ojos: 'verde' };
+
+		let personaCompleta = {
+			...persona,
+			...masInfo,
+			cabello: 'rubio',
+			piel: 'aperlado'
+		}
+		console.log(personaCompleta);
+
+//=========================================================================
+//----> Closures
+		
+		const crearPersona = (nombre, ojos = 2) => {
+			let demas = 'y aparte estan vivos';
+			let objeto = [1,2,3,4];
+			// mas codigo
+
+			return () => `${nombre} tiene ${ojos} ojos ${demas}`;
+		};
+
+		let paco = crearPersona('Francisco');
+		let vero = crearPersona("Veronica", 1);
+		let rodo = crearPersona(`Rodolfo`, 3);
+
+		console.log(paco());
+		console.log(vero());
+		console.log(rodo());
+
+//=========================================================================
+//----> Closure Entrevista
+
+		const miFuncion = (num1, num2 = 15) => {
+			const suma = num1 + num2;
+
+			return () => console.log(suma);
+		};
+
+		const suma = miFuncion(5);
+		suma(); // Tiene que hacer log de "20"
+
+//=========================================================================
+
+		const apellido_p = 'Fernández';
+		const ap_mat = 'Hernández';
+
+		const apellidos = {
+			apellido_p,
+			apellido_m: ap_mat
+		}
+		console.log(apellidos);
+
+//=========================================================================
+//----> Ternario
+
+		const valor = 7;
+		/*
+		let respuesta;
+		if (valor <= 5) {
+			respuesta = 'Menor o igual';
+		}
+		else {
+			respuesta = 'Mayor';
+		}
+		*/
+		let respuesta = (valor <= 5) ? 'Menor o igual' : 'Mayor';
+
+		console.log(respuesta);
+
+//=========================================================================
+
+	</script>
+</body>
+</html>
